@@ -66,6 +66,9 @@
 				</tr>
 
 				<tr>
+				
+				<td><a href="/" class="btn btn-secondary">Reset</a></td>
+						
 					<td><input type="submit" value="Search"
 						class="btn btn-primary" /></td>
 				</tr>
@@ -82,11 +85,11 @@
 				<tr>
 					<th>S.No</th>
 					<th>Holder Name</th>
+					<th>Gender</th>
 					<th>Plan Name</th>
 					<th>Plan Status</th>
 					<th>Start Date</th>
 					<th>End Date</th>
-					<th>Benefit Amt</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -94,13 +97,18 @@
 					<tr>
 						<td>${index.count}</td>
 						<td>${plan.citizenName}</td>
+						<td>${plan.gender}</td>
 						<td>${plan.planName}</td>
 						<td>${plan.planStatus}</td>
 						<td>${plan.planStartDate}</td>
 						<td>${plan.planEndDate}</td>
-						<td>${plan.benefitAmt}</td>
 					</tr>
 				</c:forEach>
+				<tr>
+				<c:if test="${empty plans}">
+				   <td colspan="8" style="text-align: center">No Records found</td>
+				</c:if>
+				</tr>
 
 			</tbody>
 		</table>

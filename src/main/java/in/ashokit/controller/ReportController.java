@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import in.ashokit.entity.CitizenPlan;
@@ -24,11 +25,24 @@ public class ReportController {
         this.reportServiceImpl = reportServiceImpl;
     }
 	
+//    @PostMapping("/search")
+//	public String handleSearch(@ModelAttribute("search") SearchRequest search,Model model) {
+//    	//@ModelAttribute==> reset our binding obj. into model scope
+//		List<CitizenPlan> plans = service.search(search);
+//		model.addAttribute("plans", plans);
+//		init(model);
+//		return "index";
+//		
+//	}
+    
+    //OR
+    
     @PostMapping("/search")
-	public String handleSearch(SearchRequest request,Model model) {
-		System.out.println(request);
-		List<CitizenPlan> plans = service.search(request);
+	public String handleSearch(SearchRequest search,Model model) {
+    	//@ModelAttribute==> reset our binding obj. into model scope
+		List<CitizenPlan> plans = service.search(search);
 		model.addAttribute("plans", plans);
+		model.addAttribute("search", search);
 		init(model);
 		return "index";
 		
@@ -36,15 +50,13 @@ public class ReportController {
 
 	@GetMapping("/")
 	public String indexPage(Model model) {
-		//SearchRequest searchObj = new SearchRequest();
-		
-		
+		model.addAttribute("search", new SearchRequest());
 		init(model);
 		return "index";
 	}
 
 	private void init(Model model) {
-		model.addAttribute("search", new SearchRequest());
+		
 		model.addAttribute("names", service.getPlanNames());
 		model.addAttribute("statuses", service.getPlanStatuses());
 	}
