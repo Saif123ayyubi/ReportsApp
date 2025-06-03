@@ -25,7 +25,7 @@
 
 		<!--BELOW DISPLAY THE FORM  -->
 
-		<form:form action="search" modelAttribute="search" method="POST">
+		<form:form action="searchData" modelAttribute="search" method="POST">
 			<table>
 
 				<tr>
@@ -114,7 +114,7 @@
 		</table>
 		<hr />
 
-		Export : <a href="">Excel</a> <a href="">Pdf</a>
+		Export : <a href="excel">Excel</a> <a href="">Pdf</a>
 
 	</div>
 
